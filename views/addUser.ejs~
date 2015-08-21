@@ -1,0 +1,12 @@
+<% include header.ejs %>
+
+</br>
+<div id="addUserDiv">
+<form id="addUserForm" method="GET" action="/users/addUser">
+      Nimimerkki: <input type="text" name="nick">
+      Tunniste:	  <input type="text" name="id">
+      		  <input type="submit" value="Lisää">
+</form>
+</div>
+
+<% include footer.ejs %>

@@ -1,0 +1,12 @@
+<% include header.ejs %>
+
+</br>
+<div id="deleteUserDiv">
+<form id="deleteUserForm" method="DELETE" action="/users/deleteUser">
+      Nimimerkki: <input type="text" name="nick">
+      Tunniste:	  <input type="text" name="id">
+      		  <input type="submit" value="Poista">
+</form>
+</div>
+
+<% include footer.ejs %>

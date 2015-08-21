@@ -1,0 +1,67 @@
+<% include header.ejs %>
+ 
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+ <div id="userDiv">
+	<h3>User-div</h3>
+      <input type="text" id="idField">
+      <input type="hidden" value="" id="hidden">
+      <script>
+      	function getUserData(){
+      		var userId = $('#idField').val();
+      		
+      		var xmlhttp = new XMLHttpRequest();
+      		xmlhttp.onreadystatechange=function(){
+      			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+      				console.log(xmlhttp.responseText);
+      				var response = JSON.parse(xmlhttp.responseText);
+      				$('#result').empty();
+					$('#result').append('<b>Nimi: </b>');
+					$('#result').append(response[0].name + " ");
+					$('#result').append('<b>Saldo: </b>');
+					$('#result').append(response[0].credit + '&euro;');
+					$('#hidden').val(response[0].opnro);
+      			}
+      		}
+      		xmlhttp.open("GET","/users/search?card_id="+userId,true);
+      		xmlhttp.send();
+      	}
+      </script>
+      
+      <button onClick="getUserData()">Hae</button>
+      <br><br>
+      <div id="result"></div>
+ </div>
+ <div id="productDiv">
+      <h3>Product-div</h3>
+      <script>
+      function Buy(){
+      	var user = $('#hidden').val();
+      	var product = $('#product').val();
+      	var xmlhttp = new XMLHttpRequest();
+      	xmlhttp.onreadystatechange=function(){
+      		if (xmlhttp.status==200){
+      			alert('Ostotapahtuma onnistui!');
+      			$('#hidden').val("");
+      			$('#result').empty();
+      			$('#idField').val("");
+      		} else if (xmlhttp.readyState==4 && xmlhttp.status!=200){
+      			alert('TAPAHTUI VIRHE! Tarkista käyttäjän saldo.');
+      		}
+      	}
+      	xmlhttp.open("POST","/users/buy", false);
+      	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      	xmlhttp.send("user="+user+"&prodId="+product);
+      }
+      </script>
+      
+      <select name="product" id="product">
+      	<% products.forEach(function(product){ %>
+      	<option value=<%=product.id%>><%=product.nimi %> <%=product.hinta%>&euro;</option>
+      	<% }); %>
+      </select>
+      <button onClick="Buy()">Osta</button>
+      
+</div>
+
+<% include footer.ejs %>
