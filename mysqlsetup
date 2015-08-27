@@ -1,9 +1,9 @@
 USE tele;
 
 CREATE TABLE Users (
-       opnro VARCHAR(8) NOT NULL,
+       opnro VARCHAR(10) NOT NULL,
        name VARCHAR(32) DEFAULT NULL,
-       credit FLOAT(5,2) DEFAULT NULL);
+       credit FLOAT(5,2) NOT NULL);
 
 CREATE TABLE Products (
        id VARCHAR(64) DEFAULT NULL,
