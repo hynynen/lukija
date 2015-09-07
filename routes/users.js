@@ -1,8 +1,8 @@
 var mysql = require('mysql'); // Otetaan moduuli käyttöön
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'end',
-    password: 'qweasd'
+    user: 'tele',
+    password: 'homonaama'
 });
 connection.query('USE tele');
 
@@ -101,7 +101,7 @@ exports.buy = function(req, res){
 		console.log('VIRHE: Käyttäjällä ei ole tarpeeksi saldoa!');
 		res.status(500).send('VIRHE: Käyttäjällä ei ole tarpeeksi saldoa!');
 		} else {
-			connection.query("SELECT hinta FROM Products WHERE id="+product, function(err, rows){
+			connection.query("SELECT hinta FROM Products WHERE id='"+product+"'", function(err, rows){
 				if (err){	
 					console.log('Virhe haettaessa tuotteen hintaa kannasta');
 					res.status(500).send('Virhe haettaessa tuotteen hintaa kannasta');
