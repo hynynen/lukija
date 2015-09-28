@@ -1,10 +1,11 @@
 var  mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
-	user: 'end',
-	password: 'qweasd'
+	user: 'tele',
+	password: 'homonaama'
 });
 connection.query('USE tele');
+connection.close;
 
 exports.index = function (req, res){
 	console.log('Ladataan etusivu');
@@ -17,4 +18,5 @@ exports.index = function (req, res){
 products: rows, style: 'header.css'});
 		}
 	});
+	connection.close;
 };

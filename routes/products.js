@@ -1,10 +1,11 @@
 var  mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: 'localhost',
-	user: 'end',
-	password: 'qweasd'
+	user: 'tele',
+	password: 'homonaama'
 });
 connection.query('USE tele');
+connection.close;
 
 exports.index = function (req, res){
 	console.log('Ladataan tuotesivua');
@@ -17,6 +18,7 @@ exports.index = function (req, res){
 products: rows, style: 'header.css'});
 		}
 	});
+	connection.close;
 };
 
 exports.deleteProduct = function (req, res){
@@ -32,6 +34,7 @@ exports.deleteProduct = function (req, res){
 			res.redirect('/addProductView');
 		}
 	});
+	connection.close;
 }
 
 exports.add = function (req, res){
@@ -49,4 +52,5 @@ exports.add = function (req, res){
 			res.redirect('/addProductView');
 		}
 	});
+	connection.close;
 }

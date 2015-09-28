@@ -5,12 +5,14 @@ var connection = mysql.createConnection({
     password: 'homonaama'
 });
 connection.query('USE tele');
+connection.close;
 
 exports.list = function(req, res){
     console.log('Listataan käyttäjät...');
     connection.query('SELECT * FROM Users', function(err,rows){
 	res.send(rows);
     });
+    connection.close;
 //    res.send('ok');
 };
 
@@ -28,6 +30,7 @@ exports.search = function(req, res) {
 
     	}
     });
+    connection.close;
 }
 
 exports.addUser = function(req, res) {
@@ -45,6 +48,7 @@ exports.addUser = function(req, res) {
 	    res.redirect('/addUserView');
 	}
     });
+    connection.close;
 }
 
 exports.deleteUser = function(req, res) {
@@ -62,6 +66,7 @@ exports.deleteUser = function(req, res) {
 	    res.redirect('/');
 	}
     });
+    connection.close;
 }
 
 function checkCredit(user, product, callback){
@@ -88,7 +93,8 @@ function checkCredit(user, product, callback){
 				}
 			});			
 		}
-	});		
+	});
+	connection.close;		
 }
 
 exports.buy = function(req, res){
@@ -120,6 +126,7 @@ exports.buy = function(req, res){
 			});
 		}
 	});
+	connection.close;
 }
 
 exports.addCredit = function(req, res){
@@ -137,4 +144,5 @@ exports.addCredit = function(req, res){
 			res.redirect('/');
 		}
 	});
+	connection.close;
 }

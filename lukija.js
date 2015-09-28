@@ -6,7 +6,7 @@ var http = require('http');
 var router = express.Router();
 var path = require('path');
 var bodyParser = require('body-parser'); //POST-metodin käsittelyyn
-app.set('port', 3000);
+app.set('port', 80);
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname,'stylesheets')));
