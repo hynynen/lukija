@@ -39,6 +39,10 @@ app.get('/addCreditView', function(req, res){
 	console.log('Ladataan saldon lisäys');
 	res.render('addCredit',{title: 'Piikki-app', style: 'header.css'});
 });
+app.get('/ok', function(req,res){
+	console.log('Ladataan OK-sivu');
+	res.send('OK');
+});
 
 // Funktiot, joissa käpistellään tuotteiden tietoja
 app.get('/addProductView', products.index);
