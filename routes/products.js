@@ -1,11 +1,10 @@
 var  mysql = require('mysql');
 var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'tele',
-	password: 'homonaama'
+    host: 'localhost',
+    user: 'tele',
+    password: 'homonaama'
+    database: 'tele';
 });
-connection.query('USE tele');
-connection.close;
 
 exports.index = function (req, res){
 	console.log('Ladataan tuotesivua');

@@ -3,9 +3,8 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'tele',
     password: 'homonaama'
+    database: 'tele'
 });
-connection.query('USE tele');
-connection.close;
 
 exports.list = function(req, res){
     console.log('Listataan käyttäjät...');
