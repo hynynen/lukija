@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true})); //POST
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
+var mysql = require ('mysql');
 
 // Funktiot, joissa käpistellään käyttäjän tietoja
 app.get('/', index.index);
@@ -48,6 +49,17 @@ app.get('/ok', function(req,res){
 app.get('/addProductView', products.index);
 app.post('/products/addProducts', products.add);
 app.post('/products/deleteProducts', products.deleteProduct);
+
+setInterval(function(){
+    var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'tele',
+	password: 'homonaama',
+	database: 'tele'
+    });
+    connection.query('SELECT 1');
+    connection.end();
+}, 10000);
 
 // Alustetaan serveri
 http.createServer(app).listen(app.get('port'), function(){
