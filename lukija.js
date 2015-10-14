@@ -50,17 +50,6 @@ app.get('/addProductView', products.index);
 app.post('/products/addProducts', products.add);
 app.post('/products/deleteProducts', products.deleteProduct);
 
-setInterval(function(){
-    var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'tele',
-	password: 'homonaama',
-	database: 'tele'
-    });
-    connection.query('SELECT 1');
-    connection.end();
-}, 10000);
-
 // Alustetaan serveri
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' +app.get('port'));

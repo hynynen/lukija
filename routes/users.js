@@ -2,7 +2,7 @@ var mysql = require('mysql'); // Otetaan moduuli käyttöön
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'tele',
-    password: 'homonaama'
+    password: 'homonaama',
     database: 'tele'
 });
 

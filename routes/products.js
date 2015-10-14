@@ -2,8 +2,8 @@ var  mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'tele',
-    password: 'homonaama'
-    database: 'tele';
+    password: 'homonaama',
+    database: 'tele'
 });
 
 exports.index = function (req, res){
