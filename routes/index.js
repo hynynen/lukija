@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
 
 exports.index = function (req, res){
 	console.log('Ladataan etusivu');
-	connection.query("SELECT * FROM Products",function (err, rows){
+	connection.query("SELECT * FROM Products ORDER BY nimi",function (err, rows){
 		if (err){
 			console.log("Virhe haettaessa tuotteita tietokannasta");
 			res.status(500).send("Virhe haettaessa tuotteita tietokannasta");
