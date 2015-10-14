@@ -129,19 +129,20 @@ exports.buy = function(req, res){
 }
 
 exports.addCredit = function(req, res){
-	console.log('Lisätään käyttäjälle saldoa');
-	var user = req.body.id;
-	var credit = req.body.credit;
-	console.log('Käyttäjä: '+user+' Lisätään: '+credit);
-	connection.query("UPDATE Users SET credit=credit+"+credit+" WHERE opnro='"+user+"'", function(err,rows){
-		if (err){
-			console.log(err);
-			console.log('Virhe käyttäjän saldon päivittämisessä');
-			res.status(500).send('Virhe käyttäjän saldon päivittämisessä');
-		} else {
-			console.log('Saldon päivitys onnistui');
-			res.redirect('/');
-		}
-	});
-	connection.close;
+    console.log('Lisätään käyttäjälle saldoa');
+    var user = req.body.id;
+    var unparced_credit = req.body.credit;
+    var credit = unparced_credit.replace(",",".");
+    console.log('Käyttäjä: '+user+' Lisätään: '+credit);
+    connection.query("UPDATE Users SET credit=credit+"+credit+" WHERE opnro='"+user+"'", function(err,rows){
+	if (err){
+	    console.log(err);
+	    console.log('Virhe käyttäjän saldon päivittämisessä');
+	    res.status(500).send('Virhe käyttäjän saldon päivittämisessä');
+	} else {
+	    console.log('Saldon päivitys onnistui');
+	    res.redirect('/');
+	}
+    });
+    connection.close;
 }
