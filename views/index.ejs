@@ -37,6 +37,11 @@
       <script>
       function Buy(){
       	var user = $('#hidden').val();
+	console.log(user);
+	if (user === ""){
+	   alert('Käyttäjää ei ole määritelty!');
+	   exit;
+	}
       	var product = $('#product').val();
       	var xmlhttp = new XMLHttpRequest();
       	xmlhttp.onreadystatechange=function(){
